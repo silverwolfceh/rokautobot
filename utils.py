@@ -29,7 +29,8 @@ def stop_thread(thread):
 
 
 def resource_path(relative_path):
-    if hasattr(sys, '_MEIPASS'):
+    if getattr(sys, 'frozen', False):
+    #if hasattr(sys, '_MEIPASS'):
         return os.path.join(sys._MEIPASS, relative_path)
     return os.path.join(os.path.abspath("."), relative_path)
 
@@ -61,18 +62,18 @@ def bot_print(msg):
 
 def get_last_info():
     verinfo = {
-    "version": "v1.4.3.060721_beta",
+    "version": "v1.0",
     "shouldUpdateInfo": True,
     "label": {
         "update": True,
-        "text": "Welcome to use Rise of Kingdoms Bot, check update on",
+        "text": "Welcome to ROK automation bot. Contact me: ",
         "row": 0,
         "column": 0
     },
     "link": {
         "update": True,
-        "text": "GitHub",
-        "url": "https://github.com/Dylan-Zheng/Rise-of-Kingdoms-Bot",
+        "text": "silverwolfceh",
+        "url": "https://www.facebook.com/wolf.xforce/",
         "row": 0,
         "column": 1
     }

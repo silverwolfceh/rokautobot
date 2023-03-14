@@ -4,7 +4,7 @@ from utils import get_last_info
 from version import version
 import threading
 
-url = "https://github.com/Dylan-Zheng/Rise-of-Kingdoms-Bot"
+url = "https://www.facebook.com/wolf.xforce/"
 
 
 class BottomFrame(Frame):
@@ -13,8 +13,8 @@ class BottomFrame(Frame):
         Frame.__init__(self, windows, kwargs)
         self.windows_size = [kwargs['width'], kwargs['height']]
 
-        label = Label(self, text="Welcome to use Rise of Kingdoms Bot, see update on")
-        link = Label(self, text="GitHub", fg="blue", cursor="hand2")
+        label = Label(self, text="Welcome to ROK automation bot. Contact me:")
+        link = Label(self, text="silverwolfceh", fg="blue", cursor="hand2")
 
         def callback():
 

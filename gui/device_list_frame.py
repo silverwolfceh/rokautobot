@@ -92,8 +92,12 @@ class DeviceRow(Frame):
         self.name = name
         self.ip = ip
         self.port = port
-
-        self.device = adb.bridge.get_device(ip, port)
+        
+        try:
+            self.device = adb.bridge.get_device(ip, port)
+        except Exception as e:
+            print("Connected failed")
+        self.state = DISCONNECTED if self.device is None else CONNECTED
         self.device_frame = None
 
         self.name_label = Label(
@@ -103,6 +107,7 @@ class DeviceRow(Frame):
         self.status_label = Label(
             self, text=DISCONNECTED if self.device is None else CONNECTED, bg='white', width=11
         )
+        
 
         self.display_btn = Button(self, text='Display')
         self.del_btn = Button(self, text='Delete')
@@ -119,11 +124,13 @@ class DeviceRow(Frame):
     def set_on_display_click(self, on_click=lambda self: self):
 
         def callback():
+            if self.state == DISCONNECTED:
+                print("Try to connect event device is disconnected")
             device = adb.bridge.get_device(self.ip, self.port)
-            device.name = self.name
-            device.save_file_prefix = f"{self.name}_{device.serial.replace(':', '_')}"
             if device is None:
                 return
+            device.name = self.name
+            device.save_file_prefix = f"{self.name}_{device.serial.replace(':', '_')}"
             if self.device_frame is None:
                 self.status_label.config(text=DISCONNECTED if device is None else CONNECTED)
                 width, height = self.master.master.windows_size
@@ -152,11 +159,11 @@ class AddDeviceFrame(Frame):
         self.add_btn = Button(self, text='Add', width=10)
 
         def ip_entry_validate_cmd(value, action_type):
-            if action_type == '1':
-                if not value[-1].isdigit() and value[-1] != '.':
-                    return False
-                if value[0] == '0':
-                    return False
+            # if action_type == '1':
+            #     if not value[-1].isdigit() and value[-1] != '.':
+            #         return False
+            #     if value[0] == '0':
+            #         return False
             return True
 
         def port_entry_validate_cmd(value, action_type):

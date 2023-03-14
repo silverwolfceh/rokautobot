@@ -31,7 +31,7 @@ class BotConfig:
         self.coordinatesGatherXEntry = config.get('coordinatesGatherXEntry', 8686)
         self.coordinatesGatherYEntry = config.get('coordinatesGatherYEntry', 6868)
         self.chooseWindowGatherGem = config.get('chooseWindowGatherGem', True)
-        self.Gem1 = config.get('Gem1', False)
+        self.Gem1 = config.get('Gem1', 'Gem1')
         self.Gem2 = config.get('Gem2', False)
         self.Gem3 = config.get('Gem3', False)
         self.Gem4 = config.get('Gem4', False)

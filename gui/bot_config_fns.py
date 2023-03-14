@@ -3,7 +3,7 @@
 # Decompiled from: Python 3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]
 # Embedded file name: gui\bot_config_fns.py
 import distutils.command.config as config
-from gui.creator import checkbox_fn_creator, train_fn_creator, write_bot_config, entry_int_fn_creator
+from gui.creator import checkbox_fn_creator, train_fn_creator, write_bot_config, entry_int_fn_creator, entry_txt_fn_creator
 
 from tkinter import StringVar, OptionMenu, Frame, Label, Entry, N, W
 
@@ -131,22 +131,24 @@ return_attack_checkbox = checkbox_fn_creator('returnAttack', 'Quay về thành p
 coordinates_gatherx_entry = entry_int_fn_creator('coordinatesGatherXEntry', 'Tọa độ X')
 coordinates_gathery_entry = entry_int_fn_creator('coordinatesGatherYEntry', 'Tọa độ Y')
 choose_window_gather_gem_checkbox = checkbox_fn_creator('chooseWindowGatherGem', 'Chọn cửa sổ')
-press_gem1_checkbox = checkbox_fn_creator('Gem1', 'Gem1')
-press_gem2_checkbox = checkbox_fn_creator('Gem2', 'Gem2')
-press_gem3_checkbox = checkbox_fn_creator('Gem3', 'Gem3')
-press_gem4_checkbox = checkbox_fn_creator('Gem4', 'Gem4')
-press_gem5_checkbox = checkbox_fn_creator('Gem5', 'Gem5')
-press_gem6_checkbox = checkbox_fn_creator('Gem6', 'Gem6')
-press_gem7_checkbox = checkbox_fn_creator('Gem7', 'Gem7')
-press_gem8_checkbox = checkbox_fn_creator('Gem8', 'Gem8')
-press_gem9_checkbox = checkbox_fn_creator('Gem9', 'Gem9')
-press_gem10_checkbox = checkbox_fn_creator('Gem10', 'Gem10')
-press_gem11_checkbox = checkbox_fn_creator('Gem11', 'Gem11')
-press_gem12_checkbox = checkbox_fn_creator('Gem12', 'Gem12')
-press_gem13_checkbox = checkbox_fn_creator('Gem13', 'Gem13')
-press_gem14_checkbox = checkbox_fn_creator('Gem14', 'Gem14')
-press_gem15_checkbox = checkbox_fn_creator('Gem15', 'Gem15')
-press_gem16_checkbox = checkbox_fn_creator('Gem16', 'Gem16')
+gem_window1_name = entry_txt_fn_creator("Gem1", "Tên cửa sổ 1")
+gem_window2_name = entry_txt_fn_creator("Gem2", "Tên cửa sổ 2")
+# press_gem1_checkbox = checkbox_fn_creator('Gem1', 'Gem1')
+# press_gem2_checkbox = checkbox_fn_creator('Gem2', 'Gem2')
+# press_gem3_checkbox = checkbox_fn_creator('Gem3', 'Gem3')
+# press_gem4_checkbox = checkbox_fn_creator('Gem4', 'Gem4')
+# press_gem5_checkbox = checkbox_fn_creator('Gem5', 'Gem5')
+# press_gem6_checkbox = checkbox_fn_creator('Gem6', 'Gem6')
+# press_gem7_checkbox = checkbox_fn_creator('Gem7', 'Gem7')
+# press_gem8_checkbox = checkbox_fn_creator('Gem8', 'Gem8')
+# press_gem9_checkbox = checkbox_fn_creator('Gem9', 'Gem9')
+# press_gem10_checkbox = checkbox_fn_creator('Gem10', 'Gem10')
+# press_gem11_checkbox = checkbox_fn_creator('Gem11', 'Gem11')
+# press_gem12_checkbox = checkbox_fn_creator('Gem12', 'Gem12')
+# press_gem13_checkbox = checkbox_fn_creator('Gem13', 'Gem13')
+# press_gem14_checkbox = checkbox_fn_creator('Gem14', 'Gem14')
+# press_gem15_checkbox = checkbox_fn_creator('Gem15', 'Gem15')
+# press_gem16_checkbox = checkbox_fn_creator('Gem16', 'Gem16')
 around_troops_checkbox = checkbox_fn_creator('aroundTroops', 'Thu thập xung quanh chỉ huy')
 around_coor_checkbox = checkbox_fn_creator('aroundCoor', 'Thu thập xung quanh tọa độ')
 gather_resource_checkbox = checkbox_fn_creator('gatherResource', 'Thu thập tài nguyên')
@@ -200,7 +202,37 @@ def resource_ratio(app, parent):
         entry.config(width=10)
     return frame, None
 
-
+bot_config_title_fns = [
+    [restart_checkbox, [restart_do_round]],
+    [break_checkbox, [break_do_round]],
+    [gather_gem_checkbox,[
+        around_troops_checkbox, 
+        around_coor_checkbox, 
+        gem_no_secondery_commander, 
+        coordinates_gatherx_entry, 
+        coordinates_gathery_entry, 
+        choose_window_gather_gem_checkbox, 
+            gem_window1_name,
+            gem_window2_name,
+            # press_gem1_checkbox, 
+            # press_gem2_checkbox, 
+            # press_gem3_checkbox, 
+            # press_gem4_checkbox, 
+            # press_gem5_checkbox, 
+            # press_gem6_checkbox, 
+            # press_gem7_checkbox, 
+            # press_gem8_checkbox, 
+            # press_gem9_checkbox, 
+            # press_gem10_checkbox, 
+            # press_gem11_checkbox, 
+            # press_gem12_checkbox, 
+            # press_gem13_checkbox, 
+            # press_gem14_checkbox, 
+            # press_gem15_checkbox, 
+            # press_gem16_checkbox
+    ]],
+]
+"""
 bot_config_title_fns = [
  [restart_checkbox, 
     [restart_do_round]],
@@ -258,6 +290,6 @@ bot_config_title_fns = [
     [enable_Investigation_checkbox, scout_do_round_entry, delay_scout_entry]],
  [scout_village_cave_checkbox, 
     [scout_do_round_entry]]]
-
+"""
 def callback(url):
     webbrowser.open_new(url)

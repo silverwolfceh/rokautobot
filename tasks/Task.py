@@ -441,7 +441,7 @@ class Task:
 
             def gem_handle(hwnd, none):
                 print(win32gui.GetWindowText(hwnd))
-                if '(Gem1)' in win32gui.GetWindowText(hwnd):
+                if self.bot.config.Gem1 in win32gui.GetWindowText(hwnd):
                     
                     win32gui.FindWindowEx(hwnd, None, None, 'MainWindowWindow')
                     win32gui.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_F1)
@@ -458,7 +458,7 @@ class Task:
         if self.bot.config.Gem2:
 
             def gem_handle(hwnd, none):
-                if '(Gem2)' in win32gui.GetWindowText(hwnd):
+                if self.bot.config.Gem2 in win32gui.GetWindowText(hwnd):
                     win32gui.FindWindowEx(hwnd, None, None, 'MainWindowWindow')
                     win32gui.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_F1)
                     sleep(4)
