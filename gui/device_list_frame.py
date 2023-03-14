@@ -91,10 +91,10 @@ class DeviceRow(Frame):
         self.main_frame = main_frame
         self.name = name
         self.ip = ip
-        self.port = port
-        
+        self.port = int(port)
+        print("Checking devices: %s %s %s" % (name, ip, port))
         try:
-            self.device = adb.bridge.get_device(ip, port)
+            self.device = adb.bridge.get_device(ip, int(port))
         except Exception as e:
             print("Connected failed")
         self.state = DISCONNECTED if self.device is None else CONNECTED
@@ -170,8 +170,8 @@ class AddDeviceFrame(Frame):
             if action_type == '1':
                 if not value[-1].isdigit():
                     return False
-                if value[0] == '0':
-                    return False
+                # if value[0] == '0':
+                #     return False
             return True
 
         self.name_entry.config(width=10)
@@ -195,18 +195,27 @@ class AddDeviceFrame(Frame):
             name = self.name_entry.get()
             ip = self.ip_entry.get()
             port = self.port_entry.get()
-            if re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", ip) is None:
-                return
-            if not (1 <= int(port) <= 65535):
-                return
-            on_click(name, ip, port)
-            self.master.devices_config.append(
+            if int(port) > 0:
+                if re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", ip) is None:
+                    return
+                if not (1 <= int(port) <= 65535):
+                    return
+                on_click(name, ip, port)
+                self.master.devices_config.append(
                 {
                     'name': self.name_entry.get(),
                     'ip': self.ip_entry.get(),
                     'port': self.port_entry.get()
-                }
-            )
+                })
+            else:
+                on_click(name, ip, port)
+                self.master.devices_config.append(
+                {
+                    'name': self.name_entry.get(),
+                    'ip': self.ip_entry.get(),
+                    'port': self.port_entry.get()
+                })
+            
             write_device_config(self.master.devices_config)
 
         self.add_btn.config(command=callback)

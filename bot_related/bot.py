@@ -46,13 +46,19 @@ class Bot():
         self.building_pos_update_event = lambda **kw: kw
         self.config_update_event = lambda **kw: kw
 
-        # get screen resolution
-        str = device.shell('wm size').replace('\n', '')
-        height, width = list(map(int, str[(str.find(':') + 1):len(str)].split('x')))
-        self.resolution = {
-            'height': height,
-            'width': width
-        }
+        try:
+            # get screen resolution
+            str = device.shell('wm size').replace('\n', '')
+            height, width = list(map(int, str[(str.find(':') + 1):len(str)].split('x')))
+            self.resolution = {
+                'height': height,
+                'width': width
+            }
+        except:
+            self.resolution = {
+                'height': 1280,
+                'width': 720
+            }
 
         self.building_pos = {}
 
