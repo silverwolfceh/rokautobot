@@ -82,6 +82,7 @@ Note: Don't forget to move your **'save'**, **'config.json'** and **'devices_con
 | Attack barbarians                                      | <u>**Done**</u> |
 | Heal troops                                            | <u>**Done**</u> |
 | Gather resource                                        | **<u>Done</u>** |
+| Gather gem                                             | **<u>Done</u>** |
 | Mystery Merchant                                       | <u>**Done**</u> |
 | A simple GUI                                           | **<u>Done</u>** |
 | Allow bot control multi-devices/emulator               | **<u>Done</u>** |
