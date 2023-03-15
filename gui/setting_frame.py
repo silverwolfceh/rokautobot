@@ -92,7 +92,7 @@ class SettingFrame(Frame):
         f = Frame(self)
         label = Label(f, text='Windows Size(Restart to Effect): ')
 
-        options = ['470 x 450', '470 x 550', '470 x 650', '470 x 750', '470 x 850']
+        options = ['520 x 450', '520 x 550', '520 x 650', '520 x 750', '520 x 850']
         screen_size = config.global_config.screenSize
         value = '{} x {}'.format(screen_size[0], screen_size[1])
         variable = StringVar()

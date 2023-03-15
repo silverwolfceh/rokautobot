@@ -44,6 +44,7 @@ class DeviceListTable(Frame):
             new_row = DeviceRow(self, self.main_frame, name, ip, port)
             new_row.set_on_display_click(self.on_display_click)
             new_row.set_on_del_click(self.on_delete_click)
+            new_row.set_on_reload_click(self)
             self.device_rows.append(new_row)
             self.render()
 
@@ -64,6 +65,13 @@ class DeviceListTable(Frame):
             return
 
     def on_display_click(self, row):
+        self.master.master.select(1)
+        for device_row in self.device_rows:
+            if device_row.device_frame is not None:
+                device_row.device_frame.grid_forget()
+        row.device_frame.grid()
+
+    def on_reload_click(self, row):
         self.master.master.select(1)
         for device_row in self.device_rows:
             if device_row.device_frame is not None:
@@ -92,11 +100,12 @@ class DeviceRow(Frame):
         self.name = name
         self.ip = ip
         self.port = int(port)
-        print("Checking devices: %s %s %s" % (name, ip, port))
-        try:
-            self.device = adb.bridge.get_device(ip, int(port))
-        except Exception as e:
-            print("Connected failed")
+        self.device = None
+        # print("Checking devices: %s %s %s" % (name, ip, port))
+        # try:
+        #     self.device = adb.bridge.get_device(ip, int(port))
+        # except Exception as e:
+        #     print("Connected failed")
         self.state = DISCONNECTED if self.device is None else CONNECTED
         self.device_frame = None
 
@@ -111,18 +120,29 @@ class DeviceRow(Frame):
 
         self.display_btn = Button(self, text='Display')
         self.del_btn = Button(self, text='Delete')
+        self.reload_btn = Button(self, text='Reload')
 
         self.name_label.grid(row=0, column=0, sticky=W, padx=(10, 0))
         self.ip_port_label.grid(row=0, column=1, sticky=W, padx=(10, 0))
         self.status_label.grid(row=0, column=2, sticky=W, padx=(10, 0))
         self.display_btn.grid(row=0, column=3, sticky=W, padx=(10, 0))
         self.del_btn.grid(row=0, column=4, sticky=W, padx=(10, 0))
+        self.reload_btn.grid(row=0, column=5, sticky=W, padx=(10, 0) )
 
     def set_on_del_click(self, on_click=lambda self: self):
         self.del_btn.config(command=lambda: on_click(self))
 
-    def set_on_display_click(self, on_click=lambda self: self):
 
+    def set_on_reload_click(self, on_click=lambda self: self):
+        def callback():
+            print("Checking the state of device {}.{}".format(self.ip, self.port))
+            device = adb.bridge.get_device(self.ip, self.port)
+            if device is None:
+                self.state = DISCONNECTED
+            self.status_label.config(text=DISCONNECTED if device is None else CONNECTED)
+        self.reload_btn.config(command = callback)
+
+    def set_on_display_click(self, on_click=lambda self: self):
         def callback():
             if self.state == DISCONNECTED:
                 print("Try to connect event device is disconnected")

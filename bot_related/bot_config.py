@@ -130,4 +130,4 @@ class BotConfig:
         self.mailReport = config.get('mailReport', False)
         self.mailAlliance = config.get('mailAlliance', False)
         self.enableChat = config.get('enableChat', False)
-        self.chatEntry = config.get('chatEntry', 'Gather Gem by HLBots - facebook.com/hlbots')
+        self.chatEntry = config.get('chatEntry', '')

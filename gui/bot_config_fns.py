@@ -205,6 +205,7 @@ def resource_ratio(app, parent):
 bot_config_title_fns = [
     [restart_checkbox, [restart_do_round]],
     [break_checkbox, [break_do_round]],
+    [scout_village_cave_checkbox, []],
     [gather_gem_checkbox,[
         around_troops_checkbox, 
         around_coor_checkbox, 

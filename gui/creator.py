@@ -52,11 +52,11 @@ def entry_txt_fn_creator(name, begin_text, end_text=None):
 
         def creator(attr_name):
             def validate_cmd(value, action_type):
-                # if action_type == '1':
-                #     if not value.isdigit():
-                #         return False
-                #     if value[0] == '0':
-                #         return False
+                if action_type == '1':
+                    # if not value.isdigit():
+                    #     return False
+                    if value[0] == 'False':
+                        return False
                 setattr(app.bot_config, attr_name, value)
                 write_bot_config(app.bot_config, app.device.save_file_prefix)
                 return True

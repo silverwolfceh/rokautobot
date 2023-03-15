@@ -12,52 +12,35 @@ class Scout(Task):
         with open("resource/cavelist.txt") as file:
             self.lines = [line.rstrip() for line in file]
 
+    def input_coordinates(self, X, Y):
+        self.back_to_map_gui()
+        self.set_text(insert='Go to coordinate %s %s' % (X,Y))
+        self.tap(435, 15, 1)
+        self.tap(624, 142, 1)
+        self.input_text(X)
+        self.tap(1194, 668, 1)
+        self.tap(786, 142, 1)
+        self.input_text(Y)
+        self.tap(1194, 668, 1)
+        self.tap(880, 140, 1)
+
     def click_on_cave(self):
-        idx = 0
-        result_list = self.gui.find_all_image_props(
-                        ImagePathAndProps.CAVE_IMG_PATH.value
-                    )
-        result_list.sort(key=lambda result: result['result'][1])
-        print(len(result_list))
-        if idx < len(result_list):
-            x, y = result_list[idx]['result']
-            print(x,y)
-            self.tap(x, y, 2)
-    
-    def goto_cave(self, cx, cy):
-        coord = {
-            "magifier" : (440, 22),
-            "cavexinput": (608, 145),
-            "caveyinput" : (762, 145),
-            "gotocave" : (888, 145)
-        }
-        #coord = [(440, 22), (608, 145), (762, 145), (888, 145)]
-        x, y = coord["magifier"]
-        self.tap(x, y, 2)
-        x, y = coord["cavexinput"]
-        self.tap(x, y, 2)
-        self.input(cx, 2)
-        self.tap(x, y, 2)
-        x, y = coord["caveyinput"]
-        self.tap(x, y, 2)
-        self.input(cy, 2)
-        self.tap(x, y, 2)
-        x, y = coord["gotocave"]
-        self.tap(x, y, 2)
+        found, _, pos = self.gui.check_any(ImagePathAndProps.CAVE_IMG_PATH.value, ImagePathAndProps.PASS_ICON2_IMAGE_PATH.value)
+        if found:
+            self.set_text(insert='Tap on cave')
+            self.tap(pos[0], pos[1], 1)
+            
 
 
     def do(self, next_task=TaskName.BREAK):
-        coord_input_pos = (60, 540)
-        coord_x_pos = ()
-        coord_y_pos = ()
         self.back_to_map_gui()
         try:
             self.set_text(title='Auto Scout')
             for line in self.lines:
                 cx, cy, ctype = line.split(",")
-                self.set_text(insert = line)
+                self.set_text(insert = "Goto cave coord: " + line)
                 self.back_to_map_gui()
-                self.goto_cave(cx, cy)
+                self.input_coordinates(cx, cy)
                 self.click_on_cave()
                 time.sleep(10)
             return next_task

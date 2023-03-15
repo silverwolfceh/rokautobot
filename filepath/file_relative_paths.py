@@ -32,6 +32,8 @@ class ItemsImageAndProps(Enum):
 class ImagePathAndProps(Enum):
     CAVE_IMG_PATH = ['resource\\cave.png',
                            (1280, 720), (0, 0, 0, 0), 0.98, 25, CAVE]
+    CAVE2_IMG_PATH = ['resource\\cave2.png',
+                           (1280, 720), (0, 0, 0, 0), 0.98, 25, CAVE2]
     SCOUT_RETURN_ICON_IMAGE_PATH = ['resource\\scout_returning_icon.png', 
                             (1280, 720), (0, 0, 0, 0), 0.98, 25, RETURN_ICON]
     SCOUT_RETURN6_ICON_IMAGE_PATH = ['resource\\scout_returning6_icon.png', 
