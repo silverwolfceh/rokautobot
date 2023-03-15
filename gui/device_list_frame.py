@@ -9,6 +9,7 @@ import traceback
 RUNNING = 'running'
 DISCONNECTED = 'disconnected'
 CONNECTED = 'connected'
+NOTLOAD = 'Not loaded'
 
 
 class DeviceListFrame(Frame):
@@ -106,7 +107,7 @@ class DeviceRow(Frame):
         #     self.device = adb.bridge.get_device(ip, int(port))
         # except Exception as e:
         #     print("Connected failed")
-        self.state = DISCONNECTED if self.device is None else CONNECTED
+        self.state = NOTLOAD
         self.device_frame = None
 
         self.name_label = Label(
@@ -114,7 +115,7 @@ class DeviceRow(Frame):
         self.ip_port_label = Label(
             self, text='{}:{}'.format(ip, port), bg='white', height=1, width=19)
         self.status_label = Label(
-            self, text=DISCONNECTED if self.device is None else CONNECTED, bg='white', width=11
+            self, text=NOTLOAD, bg='white', width=11
         )
         
 
@@ -135,7 +136,7 @@ class DeviceRow(Frame):
 
     def set_on_reload_click(self, on_click=lambda self: self):
         def callback():
-            print("Checking the state of device {}.{}".format(self.ip, self.port))
+            print("Checking the state of device {}:{}".format(self.ip, self.port))
             device = adb.bridge.get_device(self.ip, self.port)
             if device is None:
                 self.state = DISCONNECTED

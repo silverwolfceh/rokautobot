@@ -85,7 +85,7 @@ class Bot():
         self.build_task = Break(self)
         self.gather_gem_task = GatherGem(self)
         self.mail_task = Break(self)
-        self.scout_village_cave_task = Break(self)
+        self.scout_village_cave_task = Scout(self)
         self.screen_shot_task = ScreenShot(self)
 
         self.round_count = 0
@@ -125,7 +125,7 @@ class Bot():
             [self.gather_resource_task, 'gatherResource'],
             [self.gather_gem_task,'enableGatherGem'],
             [self.materials_task, 'enableMaterialProduce' , 'materialDoRound'],
-            [self.scout_task, 'enableScout'],
+            [self.scout_village_cave_task, 'enableScoutVillageCave'],
             [self.tavern_task, 'enableTavern'],
             [self.training, 'enableTraining'],
         ]

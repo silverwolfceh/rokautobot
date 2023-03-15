@@ -159,7 +159,7 @@ enable_scout_checkbox = checkbox_fn_creator('enableScout', 'Mở sương mù')
 enable_Investigation_checkbox = checkbox_fn_creator('enableInvestigation', 'Do thám hang, làng')
 scout_do_round_entry = entry_int_fn_creator('scoutDoRound', 'Thực hiện', 'lượt')
 delay_scout_entry = entry_int_fn_creator('delayScout', 'Thời gian delay', 'giây')
-scout_village_cave_checkbox = checkbox_fn_creator('enableScoutVillageCave', 'Do thám hang làng')
+scout_village_cave_checkbox = checkbox_fn_creator('enableScoutVillageCave', 'Do thám hang theo tọa độ')
 
 def resource_ratio(app, parent):
     label_texts = ['Food:', 'Wood:', 'Stone:', 'Gold:']
