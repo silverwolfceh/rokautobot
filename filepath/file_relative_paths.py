@@ -32,6 +32,12 @@ class ItemsImageAndProps(Enum):
 class ImagePathAndProps(Enum):
     CAVE_IMG_PATH = ['resource\\cave.png',
                            (1280, 720), (0, 0, 0, 0), 0.98, 25, CAVE]
+    CAVE_EXLAIM1_IMG_PATH = ['resource\\cave_exlaim_1.png',
+                           (1280, 720), (0, 0, 0, 0), 0.98, 25, CAVE_EXCLAIM1]
+    CAVE_EXLAIM2_IMG_PATH = ['resource\\cave_exlaim_2.png',
+                           (1280, 720), (0, 0, 0, 0), 0.98, 25, CAVE_EXCLAIM2]
+    MAGNIFIER_ICON_IMAGE_PATH = ['resource\\magnifier_icon.png',
+                           (1280, 720), (0, 0, 0, 0), 0.98, 25, MAGNIFIER_ICON]
     CAVE2_IMG_PATH = ['resource\\cave2.png',
                            (1280, 720), (0, 0, 0, 0), 0.98, 25, CAVE2]
     SCOUT_RETURN_ICON_IMAGE_PATH = ['resource\\scout_returning_icon.png', 
@@ -43,15 +49,23 @@ class ImagePathAndProps(Enum):
     HOLD_COM_ICON_IMAGE_PATH = ['resource\\hold_com_button.png',
                             (1280, 720), (0, 0, 0, 0), 0.98, 25, HOLD_COM_BUTTON]
     GEM_MINE_ICON_IMAGE_PATH = ['resource\\gem_mine_icon.png',
-                            (1280, 720), (0, 0, 0, 0), 0.98, 25, GEM_MINE_ICON]
+                            (1280, 720), (0, 0, 0, 0), 0.9, 25, GEM_MINE_ICON]
     GEM_MINE_ICON1_IMAGE_PATH = ['resource\\gem_mine_icon1.png',
-                            (1280, 720), (0, 0, 0, 0), 0.98, 25, GEM_MINE_ICON1]
+                            (1280, 720), (0, 0, 0, 0), 0.9, 25, GEM_MINE_ICON1]
     GEM_MINE_ICON2_IMAGE_PATH = ['resource\\gem_mine_icon2.png',
-                            (1280, 720), (0, 0, 0, 0), 0.98, 25, GEM_MINE_ICON2]
+                            (1280, 720), (0, 0, 0, 0), 0.9, 25, GEM_MINE_ICON2]
     GEM_MINE_ICON3_IMAGE_PATH = ['resource\\gem_mine_icon3.png',
-                            (1280, 720), (0, 0, 0, 0), 0.98, 25, GEM_MINE_ICON3]
+                            (1280, 720), (0, 0, 0, 0), 0.9, 25, GEM_MINE_ICON3]
     GEM_MINE_ICON4_IMAGE_PATH = ['resource\\gem_mine_icon4.png',
-                            (1280, 720), (0, 0, 0, 0), 0.98, 25, GEM_MINE_ICON4]
+                            (1280, 720), (0, 0, 0, 0), 0.9, 25, GEM_MINE_ICON4]
+    GEM_MINE_ICON5_IMAGE_PATH = ['resource\\gem_mine_icon5.png',
+                            (1280, 720), (0, 0, 0, 0), 0.9, 25, GEM_MINE_ICON5]
+    GEM_MINE_ICON6_IMAGE_PATH = ['resource\\gem_mine_icon6.png',
+                            (1280, 720), (0, 0, 0, 0), 0.9, 25, GEM_MINE_ICON6]
+    GEM_MINE_ICON7_IMAGE_PATH = ['resource\\gem_mine_icon7.png',
+                            (1280, 720), (0, 0, 0, 0), 0.9, 25, GEM_MINE_ICON7]
+    GEM_MINE_ICON8_IMAGE_PATH = ['resource\\gem_mine_icon8.png',
+                            (1280, 720), (0, 0, 0, 0), 0.9, 25, GEM_MINE_ICON8]
     HOLD_ICON6_IMAGE_PATH = ['resource\\hold_icon6.png',
                             (1280, 720), (0, 0, 0, 0), 0.98, 25, HOLD_ICON6]
     HOLD_ICON7_IMAGE_PATH = ['resource\\hold_icon7.png',
@@ -109,7 +123,13 @@ class ImagePathAndProps(Enum):
     RESOURCE_GATHER_BUTTON_IMAGE_PATH = ['resource\\resource_gather_button.png',
                                          (1280, 720), (0, 0, 0, 0), 0.90, 25, RESOURCE_GATHER]
     NEW_TROOPS_BUTTON_IMAGE_PATH = ['resource\\new_troops_button.png',
-                                    (1280, 720), (0, 0, 0, 0), 0.90, 25, NEW_TROOPS]
+                                    (1280, 720), (0, 0, 0, 0), 0.85, 25, NEW_TROOPS]
+    NEW_TROOPS_BUTTON1_IMAGE_PATH = ['resource\\new_troops_button1.png',
+                                    (1280, 720), (0, 0, 0, 0), 0.85, 25, NEW_TROOPS_1]
+    NEW_TROOPS_BUTTON2_IMAGE_PATH = ['resource\\new_troops_button2.png',
+                                    (1280, 720), (0, 0, 0, 0), 0.85, 25, NEW_TROOPS_2]
+    NEW_TROOPS_BUTTON3_IMAGE_PATH = ['resource\\new_troops_button3.png',
+                                    (1280, 720), (0, 0, 0, 0), 0.85, 25, NEW_TROOPS_3]
     TROOPS_MATCH_BUTTON_IMAGE_PATH = ['resource\\troops_match_button.png',
                                       (1280, 720), (0, 0, 0, 0), 0.90, 25, TROOPS_MATCH]
     VERIFICATION_CHEST_BUTTON_IMAGE_PATH = ['resource\\verification_chest_button.png',

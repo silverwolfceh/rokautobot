@@ -156,7 +156,7 @@ class Bot():
                 curr_task = self.break_task.do_no_wait(TaskName.KILL_GAME)
 
             for task in tasks:
-                print(task[1])
+                #print(task[1])
                 if len(task) == 2:
                     if getattr(self.config, task[1]):
                         curr_task = task[0].do()

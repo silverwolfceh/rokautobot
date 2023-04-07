@@ -9,6 +9,7 @@ from tasks.Task import Task
 class Scout(Task):
     def __init__(self, bot):
         super().__init__(bot)
+        self.cave_done = []
         with open("resource/cavelist.txt") as file:
             self.lines = [line.rstrip() for line in file]
 
@@ -25,24 +26,60 @@ class Scout(Task):
         self.tap(880, 140, 1)
 
     def click_on_cave(self):
-        found, _, pos = self.gui.check_any(ImagePathAndProps.CAVE_IMG_PATH.value, ImagePathAndProps.PASS_ICON2_IMAGE_PATH.value)
-        if found:
-            self.set_text(insert='Tap on cave')
-            self.tap(pos[0], pos[1], 1)
-            
-
+        self.tap(1280/2,720/2)
 
     def do(self, next_task=TaskName.BREAK):
-        self.back_to_map_gui()
         try:
-            self.set_text(title='Auto Scout')
+            self.set_text(title='Cave list investigation')
             for line in self.lines:
-                cx, cy, ctype = line.split(",")
-                self.set_text(insert = "Goto cave coord: " + line)
+                self.back_to_home_gui()
                 self.back_to_map_gui()
+                cx, cy, ctype = line.split(",")
+                self.set_text(insert = "Goto cave coord: {}:{}".format(cx, cy))
                 self.input_coordinates(cx, cy)
+                time.sleep(2)
                 self.click_on_cave()
-                time.sleep(10)
+                time.sleep(1)
+                found, name, pos = self.gui.check_any(
+                    ImagePathAndProps.INVESTIGATE_BUTTON_IMAGE_PATH.value,
+                    ImagePathAndProps.GREAT_BUTTON_IMAGE_PATH.value
+                )
+
+                if found:
+                    x, y = pos
+                    self.tap(x, y, 2)
+                else:
+                    self.cave_done.append(line)
+                    self.set_text(insert = "This cave already done")
+                    continue
+
+                if name == ImagePathAndProps.INVESTIGATE_BUTTON_IMAGE_PATH.value[5]:
+                    while True:
+                        found, name, pos = self.gui.check_any(
+                            ImagePathAndProps.SCOUT_IDLE_ICON_IMAGE_PATH.value,
+                            ImagePathAndProps.SCOUT_ZZ_ICON_IMAGE_PATH.value
+                        )
+
+                        if found:
+                            x, y = pos
+                            self.tap(x - 10, y - 10, 2)
+                        else:
+                            self.set_text(insert = "All scouters are busy")
+                            time.sleep(10)
+                            continue
+
+                        found, name, pos = self.gui.check_any(
+                            ImagePathAndProps.SCOUT_SEND_BUTTON_IMAGE_PATH.value,
+                        )
+
+                        if found:
+                            x, y = pos
+                            self.tap(x, y, 2)
+                        else:
+                            self.set_text(insert = "No scout send button")
+                            break
+                else:
+                    continue
             return next_task
         except Exception as e:
             traceback.print_exc()

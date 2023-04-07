@@ -240,7 +240,8 @@ class GuiDetector:
         for props in props_list:
             path, size, box, threshold, least_diff, gui = props
             # x0, y0, x1, y1 = box
-
+            if gui == 'NEW_TROOPS':
+                self.save_screen("new_troop_scn.png")
             imsrc = cv2.imread(resource_path(path))
 
             result = aircv.find_template(imsrc, imsch, threshold, True)

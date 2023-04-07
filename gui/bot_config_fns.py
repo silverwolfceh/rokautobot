@@ -111,9 +111,6 @@ mail_report_checkbox = checkbox_fn_creator('mailReport', 'Thư báo cáo')
 mail_alliance_checkbox = checkbox_fn_creator('mailAlliance', 'Thư liên minh')
 chat_checkbox = checkbox_fn_creator('enableChat', 'Chat')
 chat_entry = entry_int_fn_creator('chatEntry', 'Nội dung chat')
-gather_gem_checkbox = checkbox_fn_creator('enableGatherGem', 'Thu thập Gem')
-gem_no_secondery_commander = checkbox_fn_creator('gatherGemNoSecondaryCommander', 'Không sử dụng chỉ huy phụ')
-gather_gem_around_coordinates = checkbox_fn_creator('gatherGemAroundCoordinates', 'Thu thập quanh tọa độ')
 
 # Outside
 
@@ -128,11 +125,17 @@ barbarians_max_level_entry = entry_int_fn_creator('barbariansMaxLevel', 'Maximum
 number_of_attack_entry = entry_int_fn_creator('numberOfAttack', 'Number of Attack:')
 timeout_entry = entry_int_fn_creator('timeout', 'Timeout (Second):')
 return_attack_checkbox = checkbox_fn_creator('returnAttack', 'Quay về thành phố sau khi tấn công')
+
+# Gem
+gather_gem_checkbox = checkbox_fn_creator('enableGatherGem', 'Thu thập Gem')
+gem_no_secondery_commander = checkbox_fn_creator('gatherGemNoSecondaryCommander', 'Không sử dụng chỉ huy phụ')
+gem_start_with_coordinate = checkbox_fn_creator('gatherGemStartWithCord', 'Đi đến tọa độ khi bắt đầu')
 coordinates_gatherx_entry = entry_int_fn_creator('coordinatesGatherXEntry', 'Tọa độ X')
 coordinates_gathery_entry = entry_int_fn_creator('coordinatesGatherYEntry', 'Tọa độ Y')
-choose_window_gather_gem_checkbox = checkbox_fn_creator('chooseWindowGatherGem', 'Chọn cửa sổ')
-gem_window1_name = entry_txt_fn_creator("Gem1", "Tên cửa sổ 1")
-gem_window2_name = entry_txt_fn_creator("Gem2", "Tên cửa sổ 2")
+coordinates_gather_xwidth = entry_int_fn_creator('coordinateGatherXWidth', 'Khoảng cách trục X')
+coordinates_gather_ywidth = entry_int_fn_creator('coordinateGatherYWidth', 'Khoảng cách trục Y')
+#choose_window_gather_gem_checkbox = checkbox_fn_creator('chooseWindowGatherGem', 'Chọn cửa sổ')
+gem_window1_name = entry_txt_fn_creator("Gem1", "Tên cửa sổ farm gem ")
 # press_gem1_checkbox = checkbox_fn_creator('Gem1', 'Gem1')
 # press_gem2_checkbox = checkbox_fn_creator('Gem2', 'Gem2')
 # press_gem3_checkbox = checkbox_fn_creator('Gem3', 'Gem3')
@@ -149,8 +152,8 @@ gem_window2_name = entry_txt_fn_creator("Gem2", "Tên cửa sổ 2")
 # press_gem14_checkbox = checkbox_fn_creator('Gem14', 'Gem14')
 # press_gem15_checkbox = checkbox_fn_creator('Gem15', 'Gem15')
 # press_gem16_checkbox = checkbox_fn_creator('Gem16', 'Gem16')
-around_troops_checkbox = checkbox_fn_creator('aroundTroops', 'Thu thập xung quanh chỉ huy')
-around_coor_checkbox = checkbox_fn_creator('aroundCoor', 'Thu thập xung quanh tọa độ')
+#around_troops_checkbox = checkbox_fn_creator('aroundTroops', 'Thu thập xung quanh chỉ huy')
+#around_coor_checkbox = checkbox_fn_creator('aroundCoor', 'Thu thập xung quanh tọa độ')
 gather_resource_checkbox = checkbox_fn_creator('gatherResource', 'Thu thập tài nguyên')
 resource_no_secondery_commander = checkbox_fn_creator('gatherResourceNoSecondaryCommander', 'Không dùng chỉ huy phụ')
 use_gathering_boosts = checkbox_fn_creator('useGatheringBoosts', 'Dùng Buff tăng tốc thu thập')
@@ -207,30 +210,13 @@ bot_config_title_fns = [
     [break_checkbox, [break_do_round]],
     [scout_village_cave_checkbox, []],
     [gather_gem_checkbox,[
-        around_troops_checkbox, 
-        around_coor_checkbox, 
-        gem_no_secondery_commander, 
+        gem_no_secondery_commander,
+        gem_start_with_coordinate, 
         coordinates_gatherx_entry, 
         coordinates_gathery_entry, 
-        choose_window_gather_gem_checkbox, 
-            gem_window1_name,
-            gem_window2_name,
-            # press_gem1_checkbox, 
-            # press_gem2_checkbox, 
-            # press_gem3_checkbox, 
-            # press_gem4_checkbox, 
-            # press_gem5_checkbox, 
-            # press_gem6_checkbox, 
-            # press_gem7_checkbox, 
-            # press_gem8_checkbox, 
-            # press_gem9_checkbox, 
-            # press_gem10_checkbox, 
-            # press_gem11_checkbox, 
-            # press_gem12_checkbox, 
-            # press_gem13_checkbox, 
-            # press_gem14_checkbox, 
-            # press_gem15_checkbox, 
-            # press_gem16_checkbox
+        coordinates_gather_xwidth,
+        coordinates_gather_ywidth,
+        gem_window1_name,
     ]],
 ]
 """

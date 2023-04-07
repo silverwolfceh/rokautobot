@@ -26,6 +26,7 @@ class Task:
         self.bot = bot
         self.device = bot.device
         self.gui = bot.gui
+        self.windhl = None
 
     def call_idle_back(self):
         self.set_text(insert='call back idle commander')
@@ -134,6 +135,19 @@ class Task:
             loop_count = loop_count + 1
             time.sleep(0.5)
         return loop_count
+
+    def is_map_gui(self):
+        name = self.get_curr_gui_name()
+        if name == GuiName.MAP.name:
+            return True
+        return False
+    
+    def is_home_gui(self):
+        name = self.get_curr_gui_name()
+        if name == GuiName.HOME.name:
+            return True
+        return False
+    
 
     def get_curr_gui_name(self):
         if not self.isRoKRunning():
@@ -432,29 +446,48 @@ class Task:
     def input_text(self, keyboard):
         cmd = 'input text {}'.format(keyboard)
         self.device.shell(cmd)
+
+    def press_f1_kb(self, hwnd):
+        win32gui.FindWindowEx(hwnd, None, None, 'MainWindowWindow')
+        win32gui.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_F1)
+        time.sleep(1)
+        win32gui.SendMessage(hwnd, win32con.WM_KEYUP, win32con.VK_F1)
+        time.sleep(1)
+
     def check_zoom(self):
         found, _, pos = self.gui.check_any(ImagePathAndProps.MAGNIFIER_ICON_IMAGE_PATH.value)
         if found:
             self.press_f1()
+
+    def find_window_handle(self):
+        def window_list_handle(hwnd, expectwinname):
+            if expectwinname.lower() in win32gui.GetWindowText(hwnd).lower():
+                self.windhl = hwnd
+        win32gui.EnumWindows(window_list_handle, self.bot.config.Gem1)
+
+    def zoom_out_using_f1(self):
+        winname = "(%s)"
+        if self.bot.config.Gem1:
+            winname = winname % self.bot.config.Gem1
+        winhdl = win32gui.FindWindow(None, winname)
+        while winhdl:
+            self.set_text(insert = "Zoom out")
+            found, _, pos = self.gui.check_any(ImagePathAndProps.MAGNIFIER_ICON_IMAGE_PATH.value)
+            if found:
+                self.press_f1_kb(winhdl)
+            else:
+                return
+        self.set_text(insert = "Unable to find window %s" % winname)
+
+    
     def press_f1(self):
         if self.bot.config.Gem1:
+            def gem_handle(hwnd, gemgatherwindowname):
+                #print(win32gui.GetWindowText(hwnd))
+                if gemgatherwindowname.lower() in win32gui.GetWindowText(hwnd).lower():
+                    self.press_f1_kb(hwnd)
+            win32gui.EnumWindows(gem_handle, self.bot.config.Gem1)
 
-            def gem_handle(hwnd, none):
-                print(win32gui.GetWindowText(hwnd))
-                if self.bot.config.Gem1 in win32gui.GetWindowText(hwnd):
-                    
-                    win32gui.FindWindowEx(hwnd, None, None, 'MainWindowWindow')
-                    win32gui.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_F1)
-                    sleep(4)
-                    win32gui.SendMessage(hwnd, win32con.WM_KEYUP, win32con.VK_F1)
-                    win32gui.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_F1)
-                    sleep(4)
-                    win32gui.SendMessage(hwnd, win32con.WM_KEYUP, win32con.VK_F1)
-                    win32gui.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_F1)
-                    sleep(4)
-                    win32gui.SendMessage(hwnd, win32con.WM_KEYUP, win32con.VK_F1)
-
-            win32gui.EnumWindows(gem_handle, None)
         if self.bot.config.Gem2:
 
             def gem_handle(hwnd, none):

@@ -5,6 +5,7 @@ from gui.creator import write_device_config, load_device_config
 import adb
 import re
 import traceback
+import time
 
 RUNNING = 'running'
 DISCONNECTED = 'disconnected'
@@ -136,6 +137,8 @@ class DeviceRow(Frame):
 
     def set_on_reload_click(self, on_click=lambda self: self):
         def callback():
+            self.status_label.config(text="Checking...")
+            time.sleep(1)
             print("Checking the state of device {}:{}".format(self.ip, self.port))
             device = adb.bridge.get_device(self.ip, self.port)
             if device is None:

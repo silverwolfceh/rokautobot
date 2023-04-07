@@ -37,8 +37,8 @@ class Adb:
                     self.connect_to_device(host, port)
                     device = self.client.device('{}:{}'.format(host, port))
             except Exception as e:
-                traceback.print_exc()
-                print("Just trace back, we catched the exception")
+                #traceback.print_exc()
+                #print("Just trace back, we catched the exception")
                 return None
             return device
         else:
@@ -48,8 +48,8 @@ class Adb:
                     self.connect_to_device(host, port)
                     device = self.client.device('{}'.format(host))
             except Exception as e:
-                traceback.print_exc()
-                print("Just trace back, we catched the exception")
+                #traceback.print_exc()
+                #print("Just trace back, we catched the exception")
                 return None
             return device
 
