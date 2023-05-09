@@ -32,6 +32,10 @@ class ItemsImageAndProps(Enum):
 class ImagePathAndProps(Enum):
     CAVE_IMG_PATH = ['resource\\cave.png',
                            (1280, 720), (0, 0, 0, 0), 0.98, 25, CAVE]
+    CAVE_IMG_DAY_PATH = ['resource\\cave_img_day.png',
+                           (1280, 720), (0, 0, 0, 0), 0.9, 25, CAVE_D]
+    CAVE_IMG_NIGHT_PATH = ['resource\\cave_img_night.png',
+                           (1280, 720), (0, 0, 0, 0), 0.98, 25, CAVE_N]
     CAVE_EXLAIM1_IMG_PATH = ['resource\\cave_exlaim_1.png',
                            (1280, 720), (0, 0, 0, 0), 0.98, 25, CAVE_EXCLAIM1]
     CAVE_EXLAIM2_IMG_PATH = ['resource\\cave_exlaim_2.png',
@@ -48,6 +52,8 @@ class ImagePathAndProps(Enum):
                             (1280, 720), (0, 0, 0, 0), 0.98, 25, RETURN_ICON7]
     HOLD_COM_ICON_IMAGE_PATH = ['resource\\hold_com_button.png',
                             (1280, 720), (0, 0, 0, 0), 0.98, 25, HOLD_COM_BUTTON]
+    GEM_MINE_BIG_ICON_IMAGE_PATH = ['resource\\gem_mine_big_icon.png',
+                            (1280, 720), (0, 0, 0, 0), 0.9, 25, GEM_MINE_BIG_ICON]
     GEM_MINE_ICON_IMAGE_PATH = ['resource\\gem_mine_icon.png',
                             (1280, 720), (0, 0, 0, 0), 0.9, 25, GEM_MINE_ICON]
     GEM_MINE_ICON1_IMAGE_PATH = ['resource\\gem_mine_icon1.png',
@@ -123,9 +129,9 @@ class ImagePathAndProps(Enum):
     RESOURCE_GATHER_BUTTON_IMAGE_PATH = ['resource\\resource_gather_button.png',
                                          (1280, 720), (0, 0, 0, 0), 0.90, 25, RESOURCE_GATHER]
     NEW_TROOPS_BUTTON_IMAGE_PATH = ['resource\\new_troops_button.png',
-                                    (1280, 720), (0, 0, 0, 0), 0.85, 25, NEW_TROOPS]
+                                    (1280, 720), (0, 0, 0, 0), 0.8, 25, NEW_TROOPS]
     NEW_TROOPS_BUTTON1_IMAGE_PATH = ['resource\\new_troops_button1.png',
-                                    (1280, 720), (0, 0, 0, 0), 0.85, 25, NEW_TROOPS_1]
+                                    (1280, 720), (0, 0, 0, 0), 0.8, 25, NEW_TROOPS_1]
     NEW_TROOPS_BUTTON2_IMAGE_PATH = ['resource\\new_troops_button2.png',
                                     (1280, 720), (0, 0, 0, 0), 0.85, 25, NEW_TROOPS_2]
     NEW_TROOPS_BUTTON3_IMAGE_PATH = ['resource\\new_troops_button3.png',

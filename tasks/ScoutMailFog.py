@@ -1,90 +1,15 @@
 import traceback
-import time
 
 from filepath.file_relative_paths import ImagePathAndProps
 from tasks.constants import TaskName, BuildingNames
 from tasks.Task import Task
 
 
-class Scout(Task):
+class ScoutMailFog(Task):
     def __init__(self, bot):
         super().__init__(bot)
-        self.cave_done = []
-        with open("resource/cavelist.txt") as file:
-            self.lines = [line.rstrip() for line in file]
-
-    def input_coordinates(self, X, Y):
-        self.back_to_map_gui()
-        self.set_text(insert='Go to coordinate %s %s' % (X,Y))
-        self.tap(435, 15, 1)
-        self.tap(624, 142, 1)
-        self.input_text(X)
-        self.tap(1194, 668, 1)
-        self.tap(786, 142, 1)
-        self.input_text(Y)
-        self.tap(1194, 668, 1)
-        self.tap(880, 140, 1)
-
-    def click_on_cave(self):
-        self.tap(1280/2,720/2)
 
     def do(self, next_task=TaskName.BREAK):
-        try:
-            self.set_text(title='Cave list investigation')
-            for line in self.lines:
-                self.back_to_home_gui()
-                self.back_to_map_gui()
-                cx, cy, ctype = line.split(",")
-                self.set_text(insert = "Goto cave coord: {}:{}".format(cx, cy))
-                self.input_coordinates(cx, cy)
-                time.sleep(2)
-                self.click_on_cave()
-                time.sleep(1)
-                found, name, pos = self.gui.check_any(
-                    ImagePathAndProps.INVESTIGATE_BUTTON_IMAGE_PATH.value,
-                    ImagePathAndProps.GREAT_BUTTON_IMAGE_PATH.value
-                )
-
-                if found:
-                    x, y = pos
-                    self.tap(x, y, 2)
-                else:
-                    self.cave_done.append(line)
-                    self.set_text(insert = "This cave already done")
-                    continue
-
-                if name == ImagePathAndProps.INVESTIGATE_BUTTON_IMAGE_PATH.value[5]:
-                    while True:
-                        found, name, pos = self.gui.check_any(
-                            ImagePathAndProps.SCOUT_IDLE_ICON_IMAGE_PATH.value,
-                            ImagePathAndProps.SCOUT_ZZ_ICON_IMAGE_PATH.value
-                        )
-
-                        if found:
-                            x, y = pos
-                            self.tap(x - 10, y - 10, 2)
-                        else:
-                            self.set_text(insert = "All scouters are busy")
-                            time.sleep(10)
-                            continue
-
-                        found, name, pos = self.gui.check_any(
-                            ImagePathAndProps.SCOUT_SEND_BUTTON_IMAGE_PATH.value,
-                        )
-
-                        if found:
-                            x, y = pos
-                            self.tap(x, y, 2)
-                        else:
-                            self.set_text(insert = "No scout send button")
-                            break
-                else:
-                    continue
-            return next_task
-        except Exception as e:
-            traceback.print_exc()
-            return next_task
-
 
         try:
             self.set_text(title='Auto Scout')

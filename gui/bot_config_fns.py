@@ -163,6 +163,7 @@ enable_Investigation_checkbox = checkbox_fn_creator('enableInvestigation', 'Do t
 scout_do_round_entry = entry_int_fn_creator('scoutDoRound', 'Thực hiện', 'lượt')
 delay_scout_entry = entry_int_fn_creator('delayScout', 'Thời gian delay', 'giây')
 scout_village_cave_checkbox = checkbox_fn_creator('enableScoutVillageCave', 'Do thám hang theo tọa độ')
+scout_map_type_entry = entry_txt_fn_creator('scoutMaptype', "Map type (A,B,C,D) ")
 
 def resource_ratio(app, parent):
     label_texts = ['Food:', 'Wood:', 'Stone:', 'Gold:']
@@ -208,7 +209,12 @@ def resource_ratio(app, parent):
 bot_config_title_fns = [
     [restart_checkbox, [restart_do_round]],
     [break_checkbox, [break_do_round]],
-    [scout_village_cave_checkbox, []],
+    [scout_village_cave_checkbox, [scout_map_type_entry]],
+    [enable_scout_checkbox, [
+        enable_Investigation_checkbox, 
+        scout_do_round_entry, 
+        delay_scout_entry
+    ]],
     [gather_gem_checkbox,[
         gem_no_secondery_commander,
         gem_start_with_coordinate, 

@@ -232,6 +232,33 @@ class GuiDetector:
             _, max_val, _, max_loc = cv2.minMaxLoc(result)
 
 
+    def min_max_check(self, *props_list):
+        target = cv2.imdecode(np.asarray(self.get_curr_device_screen_img_byte_array(), dtype=np.uint8),
+                             cv2.IMREAD_COLOR)
+        for props in props_list:
+            path, size, box, threshold, least_diff, gui = props
+            # x0, y0, x1, y1 = box
+            #if gui == 'NEW_TROOPS' or gui == 'CAVE_DAY':
+            self.save_screen(gui + ".png")
+            template = cv2.imread(resource_path(path), cv2.IMREAD_COLOR)
+            h, w = np.shape(template)[:2]
+
+            result = cv2.matchTemplate(target, template, cv2.TM_CCOEFF_NORMED)
+            # Locate the position of the template in the target image
+            min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+            print(min_loc, max_loc)
+            
+            result = (max_loc[0] + w/2, max_loc[1] + h/2)
+            
+            if self.debug:
+                cv2.imshow('imsrc', target)
+                cv2.imshow('imsch', template)
+                cv2.waitKey(0)
+
+            if result is not None:
+                return True, gui, result
+
+        return False, None, None
 
     def check_any(self, *props_list):
         imsch = cv2.imdecode(np.asarray(self.get_curr_device_screen_img_byte_array(), dtype=np.uint8),
@@ -240,8 +267,8 @@ class GuiDetector:
         for props in props_list:
             path, size, box, threshold, least_diff, gui = props
             # x0, y0, x1, y1 = box
-            if gui == 'NEW_TROOPS':
-                self.save_screen("new_troop_scn.png")
+            #if gui == 'NEW_TROOPS' or gui == 'CAVE_DAY':
+            self.save_screen(gui + ".png")
             imsrc = cv2.imread(resource_path(path))
 
             result = aircv.find_template(imsrc, imsch, threshold, True)

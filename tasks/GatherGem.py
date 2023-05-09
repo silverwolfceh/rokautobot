@@ -13,18 +13,6 @@ class GatherGem(Task):
         self.max_query_space = 1
 
     def do(self, next_task = TaskName.BREAK):
-        found, name, pos = self.gui.check_any(ImagePathAndProps.NEW_TROOPS_BUTTON_IMAGE_PATH.value,
-                                            ImagePathAndProps.NEW_TROOPS_BUTTON1_IMAGE_PATH.value,
-                                            ImagePathAndProps.NEW_TROOPS_BUTTON2_IMAGE_PATH.value,
-                                            ImagePathAndProps.NEW_TROOPS_BUTTON3_IMAGE_PATH.value,
-                                            ImagePathAndProps.HOLD_ICON_IMAGE_PATH.value,
-                                            ImagePathAndProps.HOLD_ICON6_IMAGE_PATH.value,
-                                            ImagePathAndProps.HOLD_ICON7_IMAGE_PATH.value)
-        if found:
-            print("Test pass")
-        else:
-            print("Test failed")
-        time.sleep(1000)
         self.set_text(title = 'Gem gathering', remove=True)
         self.set_text(insert = "Start gem gathering")
         if self.bot.config.gatherGemStartWithCord:
@@ -131,6 +119,7 @@ class GatherGem(Task):
                                  ImagePathAndProps.GEM_MINE_ICON7_IMAGE_PATH.value,
                                  ImagePathAndProps.GEM_MINE_ICON8_IMAGE_PATH.value,
                                  )[2]
+        # pos = self.gui.check_any(ImagePathAndProps.GEM_MINE_BIG_ICON_IMAGE_PATH.value)[2]
         return pos
 
     def Gem_All(self):

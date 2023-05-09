@@ -43,3 +43,5 @@ test_screen_caps
 
 ### Python cache ###
 *.pyc
+*.exe
+*.zip

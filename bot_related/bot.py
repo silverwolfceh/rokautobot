@@ -18,7 +18,8 @@ from tasks.GatherGem import GatherGem
 from tasks.LocateBuildings import LocateBuilding
 from tasks.Materials import Materials
 from tasks.Restart import Restart
-from tasks.Scout import Scout
+from tasks.ScoutMap import ScoutMap
+from tasks.ScoutMailFog import ScoutMailFog
 from tasks.ScreenShot import ScreenShot
 from tasks.Tavern import Tavern
 from tasks.Training import Training
@@ -79,13 +80,14 @@ class Bot():
         self.gather_resource_task = GatherResource(self)
         self.locate_building_task = LocateBuilding(self)
         self.materials_task = Materials(self)
-        self.scout_task = Scout(self)
+        self.scout_map_task = ScoutMap(self)
+        self.scout_mail_frog_task = ScoutMailFog(self)
         self.tavern_task = Tavern(self)
         self.training = Training(self)
         self.build_task = Break(self)
         self.gather_gem_task = GatherGem(self)
         self.mail_task = Break(self)
-        self.scout_village_cave_task = Scout(self)
+        #self.scout_village_cave_task = Scout(self)
         self.screen_shot_task = ScreenShot(self)
 
         self.round_count = 0
@@ -125,7 +127,8 @@ class Bot():
             [self.gather_resource_task, 'gatherResource'],
             [self.gather_gem_task,'enableGatherGem'],
             [self.materials_task, 'enableMaterialProduce' , 'materialDoRound'],
-            [self.scout_village_cave_task, 'enableScoutVillageCave'],
+            [self.scout_map_task, 'enableScoutVillageCave'],
+            [self.scout_mail_frog_task, 'enableScout'],
             [self.tavern_task, 'enableTavern'],
             [self.training, 'enableTraining'],
         ]

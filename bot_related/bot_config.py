@@ -130,6 +130,7 @@ class BotConfig:
         self.scoutDoRound = config.get('scoutDoRound', 20)
         self.delayScout = config.get('delayScout', 1)
         self.enableScoutVillageCave = config.get('enableScoutVillageCave', False)
+        self.scoutMaptype = config.get('scoutMapType', "D")
         self.enableMail = config.get('enableMail', False)
         self.mailSystem = config.get('mailSystem', False)
         self.mailReport = config.get('mailReport', False)
