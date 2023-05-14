@@ -189,7 +189,7 @@ class ImagePathAndProps(Enum):
                                      (1280, 720), (0, 0, 0, 0), 0.90, 25, DAILY_AP_CLAIM]
     USE_AP_BUTTON_IMAGE_PATH = ['resource\\use_ap.png',
                                      (1280, 720), (0, 0, 0, 0), 0.90, 25, USE_AP]
-    SCOUT_BUTTON_IMAGE_PATH = ['resource\\scout_button.png',
+    SCOUT_BUTTON_IMAGE_PATH = ['resource\\scout_button1.png',
                                      (1280, 720), (0, 0, 0, 0), 0.90, 25, SCOUT_BUTTON]
     SCOUT_EXPLORE_BUTTON_IMAGE_PATH = ['resource\\explore_button.png',
                                      (1280, 720), (0, 0, 0, 0), 0.90, 25, EXPLORE_BUTTON]

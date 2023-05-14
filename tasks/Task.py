@@ -29,6 +29,7 @@ class Task:
         self.windhl = None
 
     def call_idle_back(self):
+        return
         self.set_text(insert='call back idle commander')
         self.back_to_map_gui()
         while True:

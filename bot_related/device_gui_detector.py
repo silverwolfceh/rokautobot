@@ -239,7 +239,7 @@ class GuiDetector:
             path, size, box, threshold, least_diff, gui = props
             # x0, y0, x1, y1 = box
             #if gui == 'NEW_TROOPS' or gui == 'CAVE_DAY':
-            self.save_screen(gui + ".png")
+            #self.save_screen(gui + ".png")
             template = cv2.imread(resource_path(path), cv2.IMREAD_COLOR)
             h, w = np.shape(template)[:2]
 
@@ -268,7 +268,7 @@ class GuiDetector:
             path, size, box, threshold, least_diff, gui = props
             # x0, y0, x1, y1 = box
             #if gui == 'NEW_TROOPS' or gui == 'CAVE_DAY':
-            self.save_screen(gui + ".png")
+            #self.save_screen(gui + ".png")
             imsrc = cv2.imread(resource_path(path))
 
             result = aircv.find_template(imsrc, imsch, threshold, True)
