@@ -5,25 +5,10 @@ import time
 from tasks.Task import *
 from bot_related.bot_config import BotConfig
 from bot_related.device_gui_detector import GuiDetector, GuiName
-
-from filepath.file_relative_paths import ImagePathAndProps, VERIFICATION_CLOSE_REFRESH_OK, VERIFICATION_VERIFY_TITLE
-from tasks.Alliance import Alliance
-from tasks.Barbarians import Barbarians
-from tasks.Break import Break
-from tasks.ClaimQuests import ClaimQuests
-from tasks.ClaimVip import ClaimVip
-from tasks.Collecting import Collecting
-from tasks.GatherResource import GatherResource
-from tasks.GatherGem import GatherGem
 from tasks.LocateBuildings import LocateBuilding
-from tasks.Materials import Materials
+from filepath.file_relative_paths import ImagePathAndProps, VERIFICATION_CLOSE_REFRESH_OK, VERIFICATION_VERIFY_TITLE
+from tasks.Break import Break
 from tasks.Restart import Restart
-from tasks.ScoutMap import ScoutMap
-from tasks.ScoutMailFog import ScoutMailFog
-from tasks.ScreenShot import ScreenShot
-from tasks.Tavern import Tavern
-from tasks.Training import Training
-from tasks.MysteryMerchant import MysteryMerchant
 from tasks.constants import TaskName
 from tasks.RssTx import RssTx
 from tasks.DebugMode import DebugMode
@@ -73,24 +58,24 @@ class Bot():
         # tasks
         self.restart_task = Restart(self)
         self.break_task = Break(self)
-        self.mystery_merchant_task = MysteryMerchant(self)
-        self.alliance_task = Alliance(self)
-        self.barbarians_task = Barbarians(self)
-        self.claim_quests_task = ClaimQuests(self)
-        self.claim_vip_task = ClaimVip(self)
-        self.collecting_task = Collecting(self)
-        self.gather_resource_task = GatherResource(self)
+        # self.mystery_merchant_task = MysteryMerchant(self)
+        # self.alliance_task = Alliance(self)
+        # self.barbarians_task = Barbarians(self)
+        # self.claim_quests_task = ClaimQuests(self)
+        # self.claim_vip_task = ClaimVip(self)
+        # self.collecting_task = Collecting(self)
+        # self.gather_resource_task = GatherResource(self)
         self.locate_building_task = LocateBuilding(self)
-        self.materials_task = Materials(self)
-        self.scout_map_task = ScoutMap(self)
-        self.scout_mail_frog_task = ScoutMailFog(self)
-        self.tavern_task = Tavern(self)
-        self.training = Training(self)
+        # self.materials_task = Materials(self)
+        # self.scout_map_task = ScoutMap(self)
+        # self.scout_mail_frog_task = ScoutMailFog(self)
+        # self.tavern_task = Tavern(self)
+        # self.training = Training(self)
         self.build_task = Break(self)
-        self.gather_gem_task = GatherGem(self)
+        # self.gather_gem_task = GatherGem(self)
         self.mail_task = Break(self)
         #self.scout_village_cave_task = Scout(self)
-        self.screen_shot_task = ScreenShot(self)
+        # self.screen_shot_task = ScreenShot(self)
         self.rss_trans_task = RssTx(self)
         self.debug_mode_task = DebugMode(self)
 
@@ -124,26 +109,6 @@ class Bot():
             [self.rss_trans_task, 'enableRssTx'],
             [self.debug_mode_task, 'enableDebug']
         ]
-        # tasks = [
-        #     [self.mystery_merchant_task, 'enableMysteryMerchant'],
-        #     [self.alliance_task, 'allianceAction', 'allianceDoRound'],
-        #     [self.barbarians_task, 'attackBarbarians'],
-        #     [self.claim_quests_task, 'claimQuests', 'questDoRound'],
-        #     [self.claim_vip_task, 'enableVipClaimChest', 'vipDoRound'],
-        #     [self.collecting_task, 'enableCollecting'],
-        #     [self.gather_resource_task, 'gatherResource'],
-        #     [self.gather_gem_task,'enableGatherGem'],
-        #     [self.materials_task, 'enableMaterialProduce' , 'materialDoRound'],
-        #     [self.scout_map_task, 'enableScoutVillageCave'],
-        #     [self.scout_mail_frog_task, 'enableScout'],
-        #     [self.tavern_task, 'enableTavern'],
-        #     [self.training, 'enableTraining'],
-        # ]
-        """
-        tasks = [
-            [self.gather_gem_task,'gatherGem'],
-        ]
-        """
         if self.building_pos is None:
             curr_task = TaskName.INIT_BUILDING_POS
 

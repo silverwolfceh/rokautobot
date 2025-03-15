@@ -45,3 +45,4 @@ test_screen_caps
 *.pyc
 *.exe
 *.zip
+*.json
