@@ -3,7 +3,7 @@ from filepath.file_relative_paths import ImagePathAndProps
 from filepath.file_relative_paths import GuiCheckImagePathAndPropsOrdered
 from filepath.file_relative_paths import FilePaths
 from utils import resource_path
-from utils import img_to_string
+from utils import img_to_string,img_to_string1
 from utils import img_remove_background_and_enhance_word
 from utils import bot_print
 
@@ -90,8 +90,11 @@ class GuiDetector:
 
     def resource_amount_image_to_string(self):
         result_list = []
+        # boxes = [
+        #     (695, 10, 770, 34), (820, 10, 890, 34), (943, 10, 1015, 34), (1065, 10, 1140, 34)
+        # ]
         boxes = [
-            (695, 10, 770, 34), (820, 10, 890, 34), (943, 10, 1015, 34), (1065, 10, 1140, 34)
+            (690, 10, 765, 33), (814, 10, 883, 33), (934, 10, 1007, 33), (1058, 10, 1131, 33)
         ]
         for box in boxes:
             x0, y0, x1, y1 = box
@@ -100,13 +103,25 @@ class GuiDetector:
             imsch = imsch[y0:y1, x0:x1]
             resource_image = Image.fromarray(imsch)
             try:
-                result_list.append(abs(int(img_to_string(resource_image)
-                                           .replace('.', '')
-                                           .replace('B', '00000000')
-                                           .replace('M', '00000')
-                                           .replace('K', '00')
-                                           ))
-                                   )
+                octret = img_to_string(resource_image)
+                hasprecison = octret.split(".")
+                if len(hasprecison) == 2:
+                    result_list.append(abs(int(octret
+                                            .replace('.', '')
+                                            .replace('B', '00000000')
+                                            .replace('M', '00000')
+                                            .replace('K', '00')
+                                            ))
+                                    )
+                elif len(hasprecison) == 1:
+                    result_list.append(abs(int(octret
+                                            .replace('.', '')
+                                            .replace('B', '000000000')
+                                            .replace('M', '000000')
+                                            .replace('K', '000')
+                                            ))
+                                    )
+
             except Exception as e:
                 result_list.append(-1)
         return result_list
@@ -150,18 +165,27 @@ class GuiDetector:
         return result
 
     def match_query_to_string(self):
-        x0, y0, x1, y1 = (1211, 162, 1242, 179)
+        # x0, y0, x1, y1 = (1211, 162, 1242, 179)
+        x0, y0, x1, y1 = (1200, 139, 1267, 155)
 
         try:
             imsch = cv2.imdecode(np.asarray(self.get_curr_device_screen_img_byte_array(), dtype=np.uint8),
                                  cv2.IMREAD_COLOR)
             imsch = cv2.cvtColor(imsch, cv2.COLOR_BGR2GRAY)
             imsch = imsch[y0:y1, x0:x1]
+            cv2.imwrite('processed_image.png', imsch)
             ret, imsch = cv2.threshold(imsch, 215, 255, cv2.THRESH_BINARY)
             resource_image = Image.fromarray(imsch)
-            result = ''.join(c for c in img_to_string(resource_image) if c.isdigit())
-            return int(result[0]), int(result[1])
+            ocrstring = img_to_string(resource_image)
+            if len(ocrstring) == 3:
+                if ocrstring[0].isdigit() and ocrstring[2].isdigit():
+                    return (int(ocrstring[0]), int(ocrstring[2]))
+            elif len(ocrstring) == 2:
+                if ocrstring[0].isdigit() and ocrstring[1].isdigit():
+                    return (int(ocrstring[0]), int(ocrstring[1]))
+            return (None, None)
         except Exception as e:
+            print(e)
             try:
                 return (None, None)
             finally:

@@ -58,17 +58,17 @@ class BotConfig:
         self.enableMysteryMerchant = config.get('enableMysteryMerchant', False)
 
         # Collecting
-        self.enableCollecting = config.get('enableCollecting', True)
+        self.enableCollecting = config.get('enableCollecting', False)
 
         # Producing
-        self.enableMaterialProduce = config.get('enableMaterialProduce', True)
+        self.enableMaterialProduce = config.get('enableMaterialProduce', False)
         self.materialDoRound = config.get('materialDoRound', 1)
 
         # Tavern
-        self.enableTavern = config.get('enableTavern', True)
+        self.enableTavern = config.get('enableTavern', False)
 
         # Training
-        self.enableTraining = config.get('enableTraining', True)
+        self.enableTraining = config.get('enableTraining', False)
 
         self.trainBarracksTrainingLevel = config.get('trainBarracksTrainingLevel',
                                                      TrainingAndUpgradeLevel.T1.value)
@@ -91,15 +91,15 @@ class BotConfig:
                                                          TrainingAndUpgradeLevel.T1.value)
 
         # Vip Chest
-        self.enableVipClaimChest = config.get('enableVipClaimChest', True)
+        self.enableVipClaimChest = config.get('enableVipClaimChest', False)
         self.vipDoRound = config.get('vipDoRound', 1)
 
         # Quest
-        self.claimQuests = config.get('claimQuests', True)
+        self.claimQuests = config.get('claimQuests', False)
         self.questDoRound = config.get('questDoRound', 1)
 
         # Alliance
-        self.allianceAction = config.get('allianceAction', True)
+        self.allianceAction = config.get('allianceAction', False)
         self.allianceDoRound = config.get('allianceDoRound', 1)
 
         # Barbarians
@@ -108,13 +108,13 @@ class BotConfig:
         self.barbariansBaseLevel = config.get('barbariansBaseLevel', 1)
         self.barbariansMinLevel = config.get('barbariansMinLevel', 1)
         self.barbariansMaxLevel = config.get('barbariansMaxLevel', 99)
-        self.holdPosition = config.get('holdPosition', True)
-        self.healTroopsBeforeAttack = config.get('healTroopsBeforeAttack', True)
+        self.holdPosition = config.get('holdPosition', False)
+        self.healTroopsBeforeAttack = config.get('healTroopsBeforeAttack', False)
         self.useDailyAPRecovery = config.get('useDailyAPRecovery', False)
         self.useNormalAPRecovery = config.get('useNormalAPRecovery', False)
         self.timeout = config.get('timeout', 300)
         self.returnAttack = config.get('returnAttack', False)
-        self.useGatheringBoosts = config.get('useGatheringBoosts', True)
+        self.useGatheringBoosts = config.get('useGatheringBoosts', False)
         self.gatherResource = config.get('gatherResource', False)
         self.gatherResourceNoSecondaryCommander = config.get('gatherResourceNoSecondaryCommander', False)
         self.gatherResourceRatioFood = config.get('gatherResourceRatioFood', 1)
@@ -126,7 +126,7 @@ class BotConfig:
 
         # Scout
         self.enableScout = config.get('enableScout', False)
-        self.enableInvestigation = config.get('enableInvestigation', True)
+        self.enableInvestigation = config.get('enableInvestigation', False)
         self.scoutDoRound = config.get('scoutDoRound', 20)
         self.delayScout = config.get('delayScout', 1)
         self.enableScoutVillageCave = config.get('enableScoutVillageCave', False)
@@ -137,3 +137,13 @@ class BotConfig:
         self.mailAlliance = config.get('mailAlliance', False)
         self.enableChat = config.get('enableChat', False)
         self.chatEntry = config.get('chatEntry', '')
+
+        # RSS Transfer
+        self.enableRssTx = config.get("enableRssTx", False)
+        self.coordinatesTransXEntry = config.get("coordinatesTransXEntry", 100)
+        self.coordinatesTransYEntry = config.get("coordinatesTransYEntry", 100)
+
+        # God mode
+        self.enableDebug = config.get("enableDebug", False)
+        self.debugParam1 = config.get("debugParam1","")
+        self.debugParam2 = config.get("debugParam2", "")

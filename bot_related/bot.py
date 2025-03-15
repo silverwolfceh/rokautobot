@@ -25,6 +25,8 @@ from tasks.Tavern import Tavern
 from tasks.Training import Training
 from tasks.MysteryMerchant import MysteryMerchant
 from tasks.constants import TaskName
+from tasks.RssTx import RssTx
+from tasks.DebugMode import DebugMode
 from utils import stop_thread
 import random
 
@@ -89,6 +91,8 @@ class Bot():
         self.mail_task = Break(self)
         #self.scout_village_cave_task = Scout(self)
         self.screen_shot_task = ScreenShot(self)
+        self.rss_trans_task = RssTx(self)
+        self.debug_mode_task = DebugMode(self)
 
         self.round_count = 0
 
@@ -116,22 +120,25 @@ class Bot():
         return self.screen_shot_task.do_city_screen()
 
     def do_task(self, curr_task=TaskName.COLLECTING):
-
         tasks = [
-            [self.mystery_merchant_task, 'enableMysteryMerchant'],
-            [self.alliance_task, 'allianceAction', 'allianceDoRound'],
-            [self.barbarians_task, 'attackBarbarians'],
-            [self.claim_quests_task, 'claimQuests', 'questDoRound'],
-            [self.claim_vip_task, 'enableVipClaimChest', 'vipDoRound'],
-            [self.collecting_task, 'enableCollecting'],
-            [self.gather_resource_task, 'gatherResource'],
-            [self.gather_gem_task,'enableGatherGem'],
-            [self.materials_task, 'enableMaterialProduce' , 'materialDoRound'],
-            [self.scout_map_task, 'enableScoutVillageCave'],
-            [self.scout_mail_frog_task, 'enableScout'],
-            [self.tavern_task, 'enableTavern'],
-            [self.training, 'enableTraining'],
+            [self.rss_trans_task, 'enableRssTx'],
+            [self.debug_mode_task, 'enableDebug']
         ]
+        # tasks = [
+        #     [self.mystery_merchant_task, 'enableMysteryMerchant'],
+        #     [self.alliance_task, 'allianceAction', 'allianceDoRound'],
+        #     [self.barbarians_task, 'attackBarbarians'],
+        #     [self.claim_quests_task, 'claimQuests', 'questDoRound'],
+        #     [self.claim_vip_task, 'enableVipClaimChest', 'vipDoRound'],
+        #     [self.collecting_task, 'enableCollecting'],
+        #     [self.gather_resource_task, 'gatherResource'],
+        #     [self.gather_gem_task,'enableGatherGem'],
+        #     [self.materials_task, 'enableMaterialProduce' , 'materialDoRound'],
+        #     [self.scout_map_task, 'enableScoutVillageCave'],
+        #     [self.scout_mail_frog_task, 'enableScout'],
+        #     [self.tavern_task, 'enableTavern'],
+        #     [self.training, 'enableTraining'],
+        # ]
         """
         tasks = [
             [self.gather_gem_task,'gatherGem'],

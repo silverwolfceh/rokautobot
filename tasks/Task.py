@@ -139,13 +139,13 @@ class Task:
 
     def is_map_gui(self):
         name = self.get_curr_gui_name()
-        if name == GuiName.MAP.name:
+        if name[0] == GuiName.MAP.name:
             return True
         return False
     
     def is_home_gui(self):
         name = self.get_curr_gui_name()
-        if name == GuiName.HOME.name:
+        if name[0] == GuiName.HOME.name:
             return True
         return False
     

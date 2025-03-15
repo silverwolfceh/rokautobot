@@ -10,7 +10,7 @@ class FilePaths(Enum):
     TEST_SRC_FOLDER_PATH = 'test_screen_caps\\'
     TEST_CURR_SCREEN_CAP_PATH = 'test_screen_caps\\current_cap.png'
     ADB_EXE_PATH = 'adb\\adb.exe'
-    TESSERACT_EXE_PATH = 'tesseract\\tesseract.exe'
+    TESSERACT_EXE_PATH = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
     TESSDATA_CHI_SIM_PATH = 'tessdata\\chi_sim.traineddata'
     SAVE_FOLDER_PATH = 'save\\'
 
@@ -221,6 +221,9 @@ class ImagePathAndProps(Enum):
                                     (1280, 720), (0, 0, 0, 0), 0.80, 25, HAS_MATCH_QUERY]
     VERIFICATION_VERIFY_TITLE_IMAGE_PATH = ['resource\\verification_verify_title.png',
                                              (1280, 720), (0, 0, 0, 0), 0.90, 25, VERIFICATION_VERIFY_TITLE]
+    ASSIT_RESOURCE_IMAGE_PATH = ['resource\\assistbtn.png', (1280, 720), (0, 0, 0, 0), 0.90, 25, ASSIT_BTN]
+    TRANS_RESOURCE_IMAGE_PATH = ['resource\\transportbtn.png', (1280, 720), (0, 0, 0, 0), 0.90, 25, TRANSPORT_BTN]
+    TRANS_GRAY_IMAGE_PATH = ['resource\\transportgraybtn.png', (1280, 720), (0, 0, 0, 0), 0.90, 25, TRANSPORT_GRAY_BTN]
 
 class GuiCheckImagePathAndProps(Enum):
     VERIFICATION_VERIFY_BUTTON_IMAGE_PATH = ['resource\\verification_verify_button.png',

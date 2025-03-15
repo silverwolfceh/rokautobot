@@ -46,6 +46,16 @@ def img_to_string(pil_image):
         .replace('\t', '').replace('\n', '').replace('\f', '')
     return result
 
+def img_to_string1(pil_image, lang='eng', config='--psm 6'):
+    image = cv2.imread(pil_image)
+    # Convert the image to grayscale
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    tess.pytesseract.tesseract_cmd = resource_path(FilePaths.TESSERACT_EXE_PATH.value)
+    tess.pytesseract.tesseract_cmd = resource_path(FilePaths.TESSERACT_EXE_PATH.value)
+    result = tess.image_to_string(pil_image, lang='eng', config='--psm 6') \
+        .replace('\t', '').replace('\n', '').replace('\f', '')
+    return result
+
 
 def img_remove_background_and_enhance_word(cv_image, lower, upper):
     hsv = cv2.cvtColor(cv_image, cv2.COLOR_BGR2HSV)
@@ -72,8 +82,8 @@ def get_last_info():
     },
     "link": {
         "update": True,
-        "text": "silverwolfceh",
-        "url": "https://www.facebook.com/wolf.xforce/",
+        "text": "vnlotus.xyz",
+        "url": "https://vnlotus.xyz",
         "row": 0,
         "column": 1
     }

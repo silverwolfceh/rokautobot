@@ -4,7 +4,7 @@ from utils import get_last_info
 from version import version
 import threading
 
-url = "https://www.facebook.com/wolf.xforce/"
+url = "https://vnlotus.xyz"
 
 
 class BottomFrame(Frame):
@@ -14,7 +14,7 @@ class BottomFrame(Frame):
         self.windows_size = [kwargs['width'], kwargs['height']]
 
         label = Label(self, text="Welcome to ROK automation bot. Contact me:")
-        link = Label(self, text="silverwolfceh", fg="blue", cursor="hand2")
+        link = Label(self, text="vnlotus.xyz", fg="blue", cursor="hand2")
 
         def callback():
 

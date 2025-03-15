@@ -29,6 +29,7 @@ class DeviceListFrame(Frame):
             dlt.add_row(config.get('name', 'None'), config['ip'], config['port'])
 
         adf.set_on_add_click(dlt.add_row)
+        adf.set_on_scan_click(dlt.add_row)
         adf.grid(row=0, column=0, pady=(10, 0), sticky=N + W)
         dlt.grid(row=1, column=0, pady=(10, 0), sticky=N + W)
 
@@ -81,13 +82,16 @@ class DeviceListTable(Frame):
         row.device_frame.grid()
 
     def on_delete_click(self, row):
-        ip, port = row.ip, row.port
-        # tmp = list(filter(lambda addr: addr['ip'] == ip and addr['port'] == port, self.master.devices_config))
-        self.master.devices_config.remove(
-            next(addr for addr in self.master.devices_config if addr['ip'] == ip and addr['port'] == port)
-        )
-        write_device_config(self.master.devices_config)
-        self.remove_row(row)
+        ip, port = row.ip, int(row.port)
+        try:
+            # Attempt to find and remove the matching device configuration
+            match = next(addr for addr in self.master.devices_config if addr['ip'] == ip and addr['port'] == port)
+            self.master.devices_config.remove(match)
+            write_device_config(self.master.devices_config)
+            self.remove_row(row)
+        except StopIteration:
+            # Handle the exception if no match is found
+            print(f"No matching device configuration found for IP: {ip}, Port: {port}.")
 
     def render(self):
         for i in range(len(self.device_rows)):
@@ -140,8 +144,8 @@ class DeviceRow(Frame):
             self.status_label.config(text="Checking...")
             time.sleep(1)
             print("Checking the state of device {}:{}".format(self.ip, self.port))
-            device = adb.bridge.get_device(self.ip, self.port)
-            if device is None:
+            device = adb.bridge.check_device_alive(self.ip, self.port)
+            if not device:
                 self.state = DISCONNECTED
             self.status_label.config(text=DISCONNECTED if device is None else CONNECTED)
         self.reload_btn.config(command = callback)
@@ -180,7 +184,9 @@ class AddDeviceFrame(Frame):
         self.port_label = Label(self, text='port: ')
         self.port_entry = Entry(self)
 
-        self.add_btn = Button(self, text='Add', width=10)
+        self.add_btn = Button(self, text='Add', width=7)
+
+        self.scan_btn = Button(self, text='Scan', width=7)
 
         def ip_entry_validate_cmd(value, action_type):
             # if action_type == '1':
@@ -213,6 +219,48 @@ class AddDeviceFrame(Frame):
         self.port_label.grid(row=0, column=4, sticky=W, padx=5)
         self.port_entry.grid(row=0, column=5, sticky=W, padx=5)
         self.add_btn.grid(row=0, column=6, sticky=W, padx=5)
+        self.scan_btn.grid(row=0, column=7, sticky=W, padx=3)
+
+    def check_existed_and_add(self, addcallback, ip, port, name):
+        existed = False
+        for config in self.master.devices_config:
+            if config.get("ip") == ip and config.get("port") == port:
+                existed = True
+                break
+        if not existed:
+            if adb.bridge.check_device_alive(ip, port):
+                addcallback(name, ip, port)
+                self.master.devices_config.append(
+                {
+                    'name': name,
+                    'ip': ip,
+                    'port': int(port)
+                })
+                write_device_config(self.master.devices_config)
+
+    def set_on_scan_click(self, on_click):
+        def callback():
+            avaidev = adb.bridge.get_client_devices()
+            for dev in avaidev:
+                name = dev.serial
+                if ":" in name:
+                    ip = name.split(":")[0]
+                    port = name.split(":")[1]
+                    if int(port) > 0:
+                        if re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", ip) is None:
+                            continue
+                        if not (1 <= int(port) <= 65535):
+                            continue
+                        self.check_existed_and_add(on_click, ip, port, name)
+                    else:
+                        print("Port not valid")
+                        continue
+                else:
+                    ip = name
+                    port = 0
+                    self.check_existed_and_add(on_click, ip, port, name)
+
+        self.scan_btn.config(command=callback)
 
     def set_on_add_click(self, on_click=lambda ip, port: None):
         def callback():

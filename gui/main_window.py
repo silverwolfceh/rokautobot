@@ -22,7 +22,7 @@ class MainWindow:
         self.window = Tk()
         self.size = config.global_config.screenSize
 
-        self.window.title('Rise Of Kingdom Bot ({})'.format(version))
+        self.window.title('ROKBOT ({})'.format(version))
         self.window.geometry('{}x{}'.format(self.size[0], self.size[1]))
         self.window.resizable(0, 0)
 

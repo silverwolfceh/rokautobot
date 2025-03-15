@@ -197,7 +197,7 @@ def load_building_pos(prefix):
                                 )) as f:
             building_pos = json.load(f)
     except Exception as e:
-        traceback.print_exc()
+        # traceback.print_exc()
         building_pos = None
     return building_pos
 

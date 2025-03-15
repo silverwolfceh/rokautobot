@@ -165,6 +165,16 @@ delay_scout_entry = entry_int_fn_creator('delayScout', 'Thời gian delay', 'gi�
 scout_village_cave_checkbox = checkbox_fn_creator('enableScoutVillageCave', 'Do thám hang theo tọa độ')
 scout_map_type_entry = entry_txt_fn_creator('scoutMaptype', "Map type (A,B,C,D) ")
 
+# Variable for rss transfer
+rss_transfer_checkbox = checkbox_fn_creator('enableRssTx', 'Chuyển RSS')
+coordinates_x_trans_entry = entry_int_fn_creator('coordinatesTransXEntry', 'Tọa độ X')
+coordinates_y_trans_entry = entry_int_fn_creator('coordinatesTransYEntry', 'Tọa độ Y')
+
+# Variable for debug
+debug_checkbox = checkbox_fn_creator('enableDebug', 'God mode')
+debug_param1_entry = entry_txt_fn_creator('debugParam1', "")
+debug_param2_entry = entry_txt_fn_creator('debugParam2', "")
+
 def resource_ratio(app, parent):
     label_texts = ['Food:', 'Wood:', 'Stone:', 'Gold:']
     attr_names = ['gatherResourceRatioFood',
@@ -207,23 +217,28 @@ def resource_ratio(app, parent):
     return frame, None
 
 bot_config_title_fns = [
-    [restart_checkbox, [restart_do_round]],
+    # [restart_checkbox, [restart_do_round]],
     [break_checkbox, [break_do_round]],
-    [scout_village_cave_checkbox, [scout_map_type_entry]],
-    [enable_scout_checkbox, [
-        enable_Investigation_checkbox, 
-        scout_do_round_entry, 
-        delay_scout_entry
-    ]],
-    [gather_gem_checkbox,[
-        gem_no_secondery_commander,
-        gem_start_with_coordinate, 
-        coordinates_gatherx_entry, 
-        coordinates_gathery_entry, 
-        coordinates_gather_xwidth,
-        coordinates_gather_ywidth,
-        gem_window1_name,
-    ]],
+    # [scout_village_cave_checkbox, [scout_map_type_entry]],
+    # [enable_scout_checkbox, [
+    #     enable_Investigation_checkbox, 
+    #     scout_do_round_entry, 
+    #     delay_scout_entry
+    # ]],
+    # [gather_gem_checkbox,[
+    #     gem_no_secondery_commander,
+    #     gem_start_with_coordinate, 
+    #     coordinates_gatherx_entry, 
+    #     coordinates_gathery_entry, 
+    #     coordinates_gather_xwidth,
+    #     coordinates_gather_ywidth,
+    #     gem_window1_name,
+    # ]],
+    [debug_checkbox, [debug_param1_entry, debug_param2_entry]],
+    [rss_transfer_checkbox, [
+        coordinates_x_trans_entry,
+        coordinates_y_trans_entry
+    ]]
 ]
 """
 bot_config_title_fns = [
