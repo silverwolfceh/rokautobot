@@ -10,7 +10,7 @@ class FilePaths(Enum):
     TEST_SRC_FOLDER_PATH = 'test_screen_caps\\'
     TEST_CURR_SCREEN_CAP_PATH = 'test_screen_caps\\current_cap.png'
     ADB_EXE_PATH = 'adb\\adb.exe'
-    TESSERACT_EXE_PATH = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+    TESSERACT_EXE_PATH = 'tesseract\\tesseract.exe'
     TESSDATA_CHI_SIM_PATH = 'tessdata\\chi_sim.traineddata'
     SAVE_FOLDER_PATH = 'save\\'
 
