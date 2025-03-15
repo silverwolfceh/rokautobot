@@ -12,8 +12,8 @@ class ScoutMap(Task):
         self.cave_done = []
         self.mapfile = "resource/map_%s.txt" % self.bot.config.scoutMaptype
         self.lastidx = 0
-        with open(self.mapfile) as file:
-            self.lines = [line.rstrip() for line in file]
+        # with open(self.mapfile) as file:
+            # self.lines = [line.rstrip() for line in file]
 
     def input_coordinates(self, X, Y):
         self.back_to_map_gui()

@@ -171,9 +171,9 @@ coordinates_x_trans_entry = entry_int_fn_creator('coordinatesTransXEntry', 'Tọ
 coordinates_y_trans_entry = entry_int_fn_creator('coordinatesTransYEntry', 'Tọa độ Y')
 
 # Variable for debug
-debug_checkbox = checkbox_fn_creator('enableDebug', 'God mode')
-debug_param1_entry = entry_txt_fn_creator('debugParam1', "")
-debug_param2_entry = entry_txt_fn_creator('debugParam2', "")
+debug_checkbox = checkbox_fn_creator('enableDebug', 'Debug mode')
+debug_param1_entry = entry_txt_fn_creator('debugParam1', "Param 1")
+debug_param2_entry = entry_txt_fn_creator('debugParam2', "Param 2")
 
 def resource_ratio(app, parent):
     label_texts = ['Food:', 'Wood:', 'Stone:', 'Gold:']
@@ -240,6 +240,9 @@ bot_config_title_fns = [
         coordinates_y_trans_entry
     ]]
 ]
+
+
+
 """
 bot_config_title_fns = [
  [restart_checkbox, 
